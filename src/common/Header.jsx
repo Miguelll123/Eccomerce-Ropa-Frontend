@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/ChatGPT Image 10 dic 2025, 14_34_06.png";
+import Login from "../app/components/Login";
 import "../common/Header.css";
 const NAV_LINKS = [
   { href: "/", label: "Shop" },
@@ -49,7 +50,7 @@ export default function Header() {
 
         {/* Lado derecho */}
         <nav className="nav-right">
-        <a key={NAV_LINKS_RIGHT.href}
+         <a key={NAV_LINKS_RIGHT.href}
         href={NAV_LINKS_RIGHT.href}
         className="ACCOUNT"
         onClick={(e)=>{
@@ -59,6 +60,7 @@ export default function Header() {
         >
             {NAV_LINKS_RIGHT.label}
         </a>
+        
           <button onClick={() => setIsCartOpen(true)}>CART</button>
           <div className="search">
             <input

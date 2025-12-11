@@ -1,14 +1,21 @@
-import { useState } from 'react'
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 import Header from './common/Header';
-import { BrowserRouter } from 'react-router-dom';
+import Login from './app/components/Login';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      {/* Aquí irán tus rutas/páginas */}
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/' element={<div>Home Page</div>} />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
