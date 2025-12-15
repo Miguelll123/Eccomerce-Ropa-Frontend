@@ -1,8 +1,7 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/ChatGPT Image 10 dic 2025, 14_34_06.png";
-import Login from "../app/components/Login";
 import "../common/Header.css";
 const NAV_LINKS = [
   { href: "/", label: "Shop" },
@@ -22,45 +21,30 @@ export default function Header() {
         <nav className="nav-left">
           <button onClick={() => setIsCategoryOpen(true)}>///</button>
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              to={link.href}
               className="nav-link"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate(link.href);
-              }}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* Logo */}
-        <a
-          href="/"
+        <Link
+          to="/"
           className="logo"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/");
-          }}
         >
           <img src={logo} alt="Miguelitos" />
-        </a>
+        </Link>
 
         {/* Lado derecho */}
         <nav className="nav-right">
-         <a key={NAV_LINKS_RIGHT.href}
-        href={NAV_LINKS_RIGHT.href}
-        className="ACCOUNT"
-        onClick={(e)=>{
-            e.preventDefault();
-            navigate(NAV_LINKS_RIGHT.href)
-        }}
-        >
+          <Link to={NAV_LINKS_RIGHT.href} className="ACCOUNT">
             {NAV_LINKS_RIGHT.label}
-        </a>
-        
+          </Link>
+
           <button onClick={() => setIsCartOpen(true)}>CART</button>
           <div className="search">
             <input
