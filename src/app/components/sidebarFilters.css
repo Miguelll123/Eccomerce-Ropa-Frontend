@@ -1,0 +1,160 @@
+/* Contenedor principal del sidebar */
+.sidebar-filters {
+  width: 240px;
+  flex-shrink: 0;
+  padding-right: 2rem;
+  border-right: 1px solid #e5e5e5;
+}
+
+/* Sección de filtro */
+.filter-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.filter-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Título de cada sección (Color, Size, etc.) */
+.filter-section h3 {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Grid de colores */
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Opción de color individual */
+.color-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Checkbox oculto (solo para funcionalidad) */
+.color-option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Punto de color */
+.color-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
+  display: block;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Estado hover del color */
+.color-option:hover .color-dot {
+  border-color: #1a1a1a;
+  transform: scale(1.1);
+}
+
+/* Estado checked del color */
+.color-option input[type="checkbox"]:checked + .color-dot {
+  border-color: #1a1a1a;
+  border-width: 2px;
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.1);
+}
+
+/* Lista de tallas */
+.size-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Label de talla */
+.size-list label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.size-list label:hover {
+  color: #666;
+}
+
+/* Checkbox de talla */
+.size-list input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  accent-color: #1a1a1a;
+  border: 1px solid #e5e5e5;
+}
+
+/* Botón de reset */
+.reset-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 2rem;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.reset-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .sidebar-filters {
+    width: 200px;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .sidebar-filters {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}

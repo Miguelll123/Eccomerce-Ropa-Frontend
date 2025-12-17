@@ -7,12 +7,14 @@ const initialState = {
     error: null
 };
 
-export const getALL = createAsyncThunk('products/getALL', async () => {
+export const getALL = createAsyncThunk('products/getALL', async (filters={}) => {
     try {
-        const data = await productService.getALL();
+        const data = await productService.getALL(filters);
+        console.log('Respuesta del backend:', data); // Debug temporal
+        // El backend devuelve { ok: true, products: [...] }
         return data.products || data; // Si viene { ok: true, products: [...] } o directamente array
     } catch (error) {
-        console.error(error);
+        console.error('Error en getALL:', error);
         throw error;
     }
 });

@@ -33,7 +33,7 @@ export default function Header() {
 
         {/* Logo */}
         <Link
-          to="/"
+          to="/logo"
           className="logo"
         >
           <img src={logo} alt="Miguelitos" />

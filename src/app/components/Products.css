@@ -1,0 +1,88 @@
+/* Contenedor principal de la página de productos */
+.products-page {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 24px;
+  gap: 3rem;
+  min-height: calc(100vh - 72px);
+}
+
+/* Contenedor del contenido de productos */
+.products-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Título de productos */
+.title-products {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin: 0 0 2rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+/* Grid de productos */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Mensaje cuando no hay productos */
+.no-products-message {
+  text-align: center;
+  color: #999;
+  font-size: 0.875rem;
+  padding: 3rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Estado de carga */
+.products-loading {
+  text-align: center;
+  padding: 4rem 0;
+  color: #666;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Error */
+.products-error {
+  text-align: center;
+  padding: 4rem 0;
+  color: #d32f2f;
+  font-size: 0.875rem;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .products-page {
+    gap: 2rem;
+    padding: 1.5rem 20px;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .products-page {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
