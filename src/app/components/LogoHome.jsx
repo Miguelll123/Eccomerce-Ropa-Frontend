@@ -1,36 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-// Importar imágenes (las tendrás que añadir en /src/assets/)
-// import heroImage from '../../assets/hero-landing.jpg';
-// import category1Image from '../../assets/category-1.jpg';
-// import category2Image from '../../assets/category-2.jpg';
-// import category3Image from '../../assets/category-3.jpg';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import camisetas from '../../assets/concepto-de-maqueta-de-camisa-con-ropa-sencilla.jpg';
+import camisas from '../../assets/fujiphilm-L9mmEncrB6M-unsplash.jpg';
+import camisetblanca from '../../assets/haryo-setyadi-acn5ERAeSb4-unsplash.jpg';
+import chanclas from '../../assets/jakob-owens-WzncgWs3RJ4-unsplash.jpg';
+import reloj from '../../assets/saif71-com-brqTWpFkmSQ-unsplash.jpg';
+import '../components/LogoHome.css'
+import Product from '../components/Product';
+import {getALL} from '../../features/Products/ProductsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LogoHome = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {products,isLoading} = useSelector(state =>state.products);
+  const featuredProducts = products.slice(0,4);
+
+  useEffect(()=> {
+    dispatch(getALL())
+  },[dispatch])
+
   return (
     <div className="home-landing">
-      {/* HERO SECTION - Imagen grande principal */}
-      <section className="hero-section">
-        <div className="hero-image">
-          {/* <img src={heroImage} alt="Hero" /> */}
-          <div className="hero-placeholder">HERO IMAGE</div>
-        </div>
+
+      <section 
+        className="hero-section"
+        style={{ backgroundImage: `url(${camisetas})` }}
+      >
+        
+        <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1 className="hero-title">Título Principal</h1>
           <p className="hero-subtitle">Subtítulo o descripción</p>
-          <Link to="/shop" className="hero-cta">
-            Shop Now
-          </Link>
+          <Link to="/shop" className="hero-cta">Shop Now</Link>
         </div>
+        
       </section>
 
-      {/* CATEGORIES/COLLECTIONS SECTION - Secciones con imágenes */}
       <section className="categories-section">
+
         <div className="category-item">
           <div className="category-image">
-            {/* <img src={category1Image} alt="Category 1" /> */}
-            <div className="category-placeholder">CATEGORY 1 IMAGE</div>
+            <img src={camisetblanca} alt="" />
           </div>
           <div className="category-content">
             <h2>Category 1</h2>
@@ -40,8 +51,7 @@ const LogoHome = () => {
 
         <div className="category-item">
           <div className="category-image">
-            {/* <img src={category2Image} alt="Category 2" /> */}
-            <div className="category-placeholder">CATEGORY 2 IMAGE</div>
+            <img src={chanclas} alt="" />
           </div>
           <div className="category-content">
             <h2>Category 2</h2>
@@ -51,72 +61,52 @@ const LogoHome = () => {
 
         <div className="category-item">
           <div className="category-image">
-            {/* <img src={category3Image} alt="Category 3" /> */}
-            <div className="category-placeholder">CATEGORY 3 IMAGE</div>
+            <img src={reloj} alt="" />
           </div>
           <div className="category-content">
             <h2>Category 3</h2>
             <Link to="/shop?category=category3">Shop Category 3</Link>
           </div>
         </div>
+
       </section>
 
-      {/* FEATURED PRODUCTS SECTION - Productos destacados */}
       <section className="featured-section">
+        <div className='container-title'>
         <h2 className="featured-title">Featured Products</h2>
-        <div className="featured-grid">
-          {/* Estos productos los puedes traer del backend o hardcodear algunos */}
-          <div className="featured-item">
-            <div className="featured-image">
-              <div className="featured-placeholder">PRODUCT IMAGE 1</div>
-            </div>
-            <h3>Product Name 1</h3>
-            <p>£99.99</p>
-            <Link to="/shop">View Product</Link>
+        </div>
+        <div className="container-journat">
+          <div className="journay-image-1">
+            <img
+              src={camisas}
+              alt=""
+              onClick={() => navigate("/shop")}
+              style={{ cursor: "pointer" }}
+            />
           </div>
-
-          <div className="featured-item">
-            <div className="featured-image">
-              <div className="featured-placeholder">PRODUCT IMAGE 2</div>
-            </div>
-            <h3>Product Name 2</h3>
-            <p>£99.99</p>
-            <Link to="/shop">View Product</Link>
+          <div className='journay-image-2'>
+           <img src={reloj} alt='' style={{cursor:'pointer'}}/>
           </div>
-
-          <div className="featured-item">
-            <div className="featured-image">
-              <div className="featured-placeholder">PRODUCT IMAGE 3</div>
-            </div>
-            <h3>Product Name 3</h3>
-            <p>£99.99</p>
-            <Link to="/shop">View Product</Link>
-          </div>
-
-          <div className="featured-item">
-            <div className="featured-image">
-              <div className="featured-placeholder">PRODUCT IMAGE 4</div>
-            </div>
-            <h3>Product Name 4</h3>
-            <p>£99.99</p>
-            <Link to="/shop">View Product</Link>
+          <div className='journay-image-2'>
+            <img src={chanclas} alt='' style={{cursor:'pointer'}}/>
           </div>
         </div>
       </section>
-
-      {/* BANNER SECTION - Banner promocional */}
-      <section className="banner-section">
-        <div className="banner-image">
-          {/* <img src={bannerImage} alt="Banner" /> */}
-          <div className="banner-placeholder">BANNER IMAGE</div>
-        </div>
-        <div className="banner-content">
-          <h2>Banner Title</h2>
-          <p>Banner description or promotion text</p>
-          <Link to="/shop" className="banner-cta">
-            Explore Collection
-          </Link>
-        </div>
+      <section className='featured-products-section'>
+      <div className='Title-grid'>
+        <h2>Featured Products Grid</h2>
+      </div>
+      <div>
+      {products && products.length >0 ? (
+        <div className='featured-products-grid'>
+          {featuredProducts.map((product)=>(
+            <Product key={product._id} product={product}/>
+          ))}
+          </div>
+      ) : (
+        <p>No hay productos disponibles</p>
+      )}
+      </div>
       </section>
     </div>
   );

@@ -1,0 +1,271 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.home-landing {
+    width: 100%;
+}
+
+
+.hero-section {
+    display: flex;
+    background-position: center;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 600px;
+    
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 400px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+
+.hero-overlay {
+     background-color: rgba(0, 0, 0, 0.3); 
+     position: absolute;
+     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-content {
+
+    position: relative;
+    z-index: 2;
+    text-align:center;
+    color: white;
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+
+.categories-section {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 50px 20px;
+    margin: 0 auto;
+    
+}
+
+@media (max-width: 480px) {
+    .categories-section {
+        grid-template-columns: 1fr;
+        width: 100%;
+        padding: 30px 10px;
+        gap: 15px;
+    }
+    
+    .category-image {
+        height: 250px;
+    }
+}
+
+
+.category-image {
+    width: 100%;
+    overflow: hidden;
+    height: 400px;
+}
+
+.category-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.category-content {
+    text-align: center;
+}
+
+
+.featured-section {
+
+    width: 100%;
+    background-color: rebeccapurple;
+    display: grid;
+    grid-template-columns:1fr 1fr ;
+    grid-template-rows: 100px 1fr;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.container-journat {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column: 3 / -3;
+    gap: 20px;
+    padding: 0 5px;
+    
+}
+.container-journat img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.container-title {
+    grid-column: 1/-1;
+}
+
+.container-title h2{
+    text-align: center;
+    font-weight: 400;
+    font-size: 40px;
+    
+    
+}
+
+@media (max-width: 480px) {
+    .featured-section {
+        grid-template-columns: 1fr;
+        width: 100%;
+        padding: 20px 10px;
+        gap: 15px;
+    }
+    
+    .container-journat {
+        grid-template-columns: 1fr;
+        grid-column: 1 / -1;
+        gap: 15px;
+        padding: 0;
+    }
+    
+    .container-journat img {
+        height: 150px;
+    }
+    
+    .container-title h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 320px) {
+    .hero-section {
+        height: 300px;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .categories-section {
+        padding: 20px 5px;
+        gap: 10px;
+    }
+    
+    .category-image {
+        height: 200px;
+    }
+    
+    .featured-section {
+        padding: 15px 5px;
+        gap: 10px;
+    }
+    
+    .container-journat {
+        gap: 10px;
+    }
+    
+    .container-journat img {
+        height: 120px;
+    }
+    
+    .container-title h2 {
+        font-size: 22px;
+    }
+}
+
+.featured-products-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.Title-grid {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.Title-grid h2 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.featured-products-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .featured-products-section {
+        padding: 50px 15px;
+    }
+    
+    .Title-grid h2 {
+        font-size: 2rem;
+    }
+    
+    .featured-products-grid {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-products-section {
+        padding: 40px 10px;
+    }
+    
+    .Title-grid {
+        margin-bottom: 30px;
+    }
+    
+    .Title-grid h2 {
+        font-size: 1.5rem;
+    }
+    
+    .featured-products-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 20px;
+    }
+}

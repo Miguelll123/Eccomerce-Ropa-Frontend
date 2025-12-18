@@ -1,0 +1,273 @@
+/* ============================================
+   EJEMPLO VISUAL: CÓMO FUNCIONA EL ESPACIO
+   ============================================ */
+
+/* ESCENARIO: Pantalla de 1400px */
+
+/* ============================================
+   1. SIN MEDIDAS (Comportamiento por defecto)
+   ============================================ */
+.sin-medidas {
+  /* Sin width, sin max-width */
+  /* Resultado: Ocupa 100% = 1400px */
+}
+
+/* ============================================
+   2. CON max-width (RECOMENDADO)
+   ============================================ */
+.con-max-width {
+  width: 100%;        /* Ocupa 100% del padre */
+  max-width: 1200px;  /* Pero nunca más de 1200px */
+  margin: 0 auto;     /* Centra el contenido */
+}
+
+/* Visual:
+   Pantalla 1400px:
+   ┌─────────────────────────────────┐
+   │  ┌──────────────────────────┐  │ ← 100px margen cada lado
+   │  │  Contenido (1200px)      │  │
+   │  └──────────────────────────┘  │
+   └─────────────────────────────────┘
+   
+   Pantalla 800px (móvil):
+   ┌────────────────┐
+   │ Contenido (800px) │ ← Se ajusta automáticamente
+   └────────────────┘
+*/
+
+/* ============================================
+   3. CON width FIJO (NO recomendado)
+   ============================================ */
+.con-width-fijo {
+  width: 1200px;      /* SIEMPRE 1200px */
+  margin: 0 auto;
+}
+
+/* Visual:
+   Pantalla 1400px:
+   ┌─────────────────────────────────┐
+   │  ┌──────────────────────────┐  │
+   │  │  Contenido (1200px)      │  │ ← OK
+   │  └──────────────────────────┘  │
+   └─────────────────────────────────┘
+   
+   Pantalla 800px (móvil):
+   ┌────────────────┐
+   │ ┌──────────────┼───┐ ← PROBLEMA: Se sale!
+   │ │ Contenido (1200px)│
+   │ └──────────────┼───┘
+   └────────────────┘
+*/
+
+/* ============================================
+   4. FLEXBOX: flex: 1
+   ============================================ */
+
+/* Contenedor flex */
+.flex-container {
+  display: flex;
+  width: 1200px;
+  gap: 20px;  /* Espacio entre items */
+}
+
+/* Items con flex: 1 (distribución equitativa) */
+.flex-item {
+  flex: 1;  /* Cada uno ocupa 1/3 del espacio */
+}
+
+/* Visual:
+   ┌─────────────────────────────────┐ 1200px
+   │ [Item1: 393px] [Item2: 393px] [Item3: 393px] │
+   └─────────────────────────────────┘
+   (1200px - 40px gap) / 3 = 386.67px cada uno
+*/
+
+/* Items con diferentes proporciones */
+.flex-item-grande {
+  flex: 2;  /* Ocupa 2 partes */
+}
+
+.flex-item-pequeño {
+  flex: 1;  /* Ocupa 1 parte */
+}
+
+/* Visual:
+   ┌─────────────────────────────────┐ 1200px
+   │ [Grande: 600px] [Pequeño: 300px] [Pequeño: 300px] │
+   └─────────────────────────────────┘
+   (2 + 1 + 1 = 4 partes totales)
+   Grande: 1200px * 2/4 = 600px
+   Pequeños: 1200px * 1/4 = 300px cada uno
+*/
+
+/* ============================================
+   5. FLEXBOX: flex-shrink
+   ============================================ */
+
+/* Contenedor pequeño */
+.flex-container-pequeño {
+  display: flex;
+  width: 600px;  /* Contenedor pequeño */
+}
+
+/* Item que puede encogerse */
+.flex-item-encoge {
+  width: 300px;      /* Tamaño deseado */
+  flex-shrink: 1;    /* Puede encogerse */
+}
+
+/* Visual:
+   ┌──────────────────────┐ 600px
+   │ [200px] [200px] [200px] │ ← Se encogieron de 300px a 200px
+   └──────────────────────┘
+*/
+
+/* Item que NO puede encogerse */
+.flex-item-no-encoge {
+  width: 300px;
+  flex-shrink: 0;  /* NO se encoge */
+}
+
+/* Visual:
+   ┌──────────────────────┐ 600px
+   │ [300px] [300px] [300px] │ ← Se salen del contenedor!
+   └──────────────────────┘
+*/
+
+/* ============================================
+   6. EJEMPLO REAL: LANDING PAGE
+   ============================================ */
+
+/* Contenedor principal de la página */
+.home-landing {
+  width: 100%;  /* Ocupa todo el ancho del navegador */
+}
+
+/* Cada sección (Hero, Categories, etc.) */
+.hero-section,
+.categories-section,
+.bestsellers-section {
+  width: 100%;        /* 100% del ancho del navegador */
+  max-width: 1400px;  /* Pero nunca más de 1400px */
+  margin: 0 auto;     /* Centra si la pantalla es > 1400px */
+  padding: 80px 20px; /* Espacio vertical y lateral */
+}
+
+/* Contenedor interno (para limitar el contenido) */
+.hero-container,
+.categories-container {
+  max-width: 1200px;  /* Contenido más estrecho (mejor legibilidad) */
+  margin: 0 auto;     /* Centra dentro de la sección */
+}
+
+/* Grid de categorías con flexbox */
+.categories-grid {
+  display: flex;
+  gap: 30px;  /* Espacio entre categorías */
+}
+
+.category-item {
+  flex: 1;  /* Cada categoría ocupa el mismo espacio */
+  /* Si hay 3 categorías: cada una ocupa 1/3 del espacio disponible */
+}
+
+/* Visual completo:
+   
+   Pantalla 1400px:
+   ┌─────────────────────────────────────────┐
+   │  ┌──────────────────────────────────┐  │
+   │  │  Hero Section (1200px contenido) │  │
+   │  └──────────────────────────────────┘  │
+   │  ┌──────────────────────────────────┐  │
+   │  │  Categories (1200px contenido)   │  │
+   │  │  ┌──────┐ ┌──────┐ ┌──────┐    │  │
+   │  │  │ Cat1 │ │ Cat2 │ │ Cat3 │    │  │
+   │  │  │ 390px│ │ 390px│ │ 390px│    │  │
+   │  │  └──────┘ └──────┘ └──────┘    │  │
+   │  └──────────────────────────────────┘  │
+   └─────────────────────────────────────────┘
+   
+   Pantalla 800px (móvil):
+   ┌────────────────┐
+   │ Hero (800px)   │ ← Se ajusta automáticamente
+   ├────────────────┤
+   │ Categories     │
+   │ ┌────┐ ┌────┐ │
+   │ │Cat1│ │Cat2│ │ ← Se apilan si usas flex-wrap
+   │ └────┘ └────┘ │
+   └────────────────┘
+*/
+
+/* ============================================
+   7. RESPONSIVE: Ajuste para móviles
+   ============================================ */
+
+/* Por defecto: flex en fila */
+.categories-grid {
+  display: flex;
+  gap: 30px;
+}
+
+/* En móviles: flex en columna (se apilan) */
+@media (max-width: 768px) {
+  .categories-grid {
+    flex-direction: column;  /* Cambia de fila a columna */
+  }
+  
+  .category-item {
+    flex: none;  /* Ya no necesita flex: 1 */
+    width: 100%; /* Ocupa todo el ancho */
+  }
+}
+
+/* Visual:
+   Desktop (1400px):
+   ┌─────────────────────────────────┐
+   │ [Cat1] [Cat2] [Cat3]           │ ← En fila
+   └─────────────────────────────────┘
+   
+   Móvil (400px):
+   ┌──────────┐
+   │ [Cat1]   │ ← Se apilan
+   │ [Cat2]   │
+   │ [Cat3]   │
+   └──────────┘
+*/
+
+/* ============================================
+   8. COMPARACIÓN: flex: 1 vs width fijo
+   ============================================ */
+
+/* Opción 1: flex: 1 (RECOMENDADO) */
+.categories-grid-flex {
+  display: flex;
+  gap: 20px;
+}
+
+.category-item-flex {
+  flex: 1;  /* Se ajusta automáticamente */
+}
+
+/* Ventajas:
+   - Se ajusta automáticamente al espacio disponible
+   - Responsive sin media queries adicionales
+   - Distribución equitativa
+*/
+
+/* Opción 2: width fijo */
+.categories-grid-fixed {
+  display: flex;
+  gap: 20px;
+}
+
+.category-item-fixed {
+  width: 380px;  /* Tamaño fijo */
+  flex-shrink: 0; /* No se encoge */
+}
+
+/* Desventajas:
+   - No se ajusta al espacio disponible
+   - Puede causar overflow en pantallas pequeñas
+   - Necesitas media queries para responsive
+*/
+
