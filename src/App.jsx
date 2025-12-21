@@ -6,6 +6,7 @@ import Header from './common/Header';
 import Login from './app/components/Login';
 import Products from './app/components/Products';
 import LogoHome from './app/components/LogoHome';
+import AbautHome from './app/components/Abaut';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Products/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/logo' element={<LogoHome/>}/>
+          <Route path='/about' element={<AbautHome/>}/>
         </Routes>
       </BrowserRouter>
     </Provider>
